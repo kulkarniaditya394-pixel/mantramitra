@@ -96,7 +96,14 @@ export function createAudioPlayer(onChange) {
   el.addEventListener('loadedmetadata', syncTime)
   el.addEventListener('timeupdate', syncTime)
   el.addEventListener('ended', () => clip?.mode === 'audio' && finish(clip))
-  el.addEventListener('error', () => clip?.mode === 'audio' && fallBack(clip))
+  el.addEventListener('error', () => {
+    // Only trust an error that belongs to the clip currently loaded. Skipping quickly aborts the
+    // previous load, and that abort must not condemn the new clip's file (which would blacklist a
+    // perfectly good recording for the rest of the session).
+    if (clip?.mode !== 'audio' || el.getAttribute('src') !== clip.src) return
+    if (el.error?.code === MediaError.MEDIA_ERR_ABORTED) return
+    fallBack(clip)
+  })
 
   function stop() {
     stopClock()

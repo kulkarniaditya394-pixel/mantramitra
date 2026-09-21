@@ -1,7 +1,25 @@
 import { ArrowIcon } from './Icons.jsx'
 import { ProgressHairline } from './ActiveWordCard.jsx'
 
-export default function TotalMeaning({ meaning, progress, completed, continueLabel, onContinue }) {
+/** Provenance line: which text, ṛṣi, deity and metre this reading comes from. */
+function SourceLine({ source }) {
+  if (!source) return null
+  const parts = [source.scripture, source.rishi && `ऋषि ${source.rishi}`, source.devata && `देवता ${source.devata}`, source.chhanda && `छन्द ${source.chhanda}`]
+  return (
+    <div className="rise-later mt-5 max-w-md">
+      <p lang="hi" className="font-hindi text-[12px] leading-relaxed text-ivory/45">
+        {parts.filter(Boolean).join(' · ')}
+      </p>
+      {source.note && (
+        <p lang="hi" className="mt-1.5 font-hindi text-[11.5px] leading-relaxed text-ivory/30">
+          {source.note}
+        </p>
+      )}
+    </div>
+  )
+}
+
+export default function TotalMeaning({ meaning, source, progress, completed, continueLabel, onContinue }) {
   return (
     <section className="flex w-full max-w-xl flex-col items-center text-center" aria-labelledby="total-meaning">
       <h2 id="total-meaning" lang="hi" className="rise font-hindi text-[15px] text-gold/85">
@@ -14,10 +32,11 @@ export default function TotalMeaning({ meaning, progress, completed, continueLab
       >
         {meaning}
       </blockquote>
+      <SourceLine source={source} />
       <button
         type="button"
         onClick={onContinue}
-        className={`group mt-8 short:mt-5 flex h-12 items-center gap-2.5 rounded-full px-6 text-[14px] transition-all duration-700 ${
+        className={`group mt-6 short:mt-4 flex h-12 items-center gap-2.5 rounded-full px-6 text-[14px] transition-all duration-700 ${
           completed ? 'bg-ivory text-ink hover:bg-white' : 'text-ivory/55 ring-1 ring-ivory/15 hover:text-ivory'
         }`}
       >

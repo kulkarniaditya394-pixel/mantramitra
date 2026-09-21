@@ -1,18 +1,36 @@
-import { useEffect, useState } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import { mantras } from './data/index.js'
 import AppShell from './components/AppShell.jsx'
 import IntroScreen from './components/IntroScreen.jsx'
 import MantraExperience from './components/MantraExperience.jsx'
 import MantraTeaser from './components/MantraTeaser.jsx'
 
+// Dev-only recording studio; excluded from production builds.
+const Studio = import.meta.env.DEV ? lazy(() => import('./studio/Studio.jsx')) : null
+
 // view: { name: 'intro' } | { name: 'experience', mantraId, verse } | { name: 'teaser' }
 export default function App() {
   const [view, setView] = useState({ name: 'intro' })
+  const [hash, setHash] = useState(() => window.location.hash)
+
+  useEffect(() => {
+    const onHash = () => setHash(window.location.hash)
+    window.addEventListener('hashchange', onHash)
+    return () => window.removeEventListener('hashchange', onHash)
+  }, [])
   const home = () => setView({ name: 'intro' })
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [view])
+
+  if (Studio && hash.startsWith('#/studio')) {
+    return (
+      <Suspense fallback={null}>
+        <Studio />
+      </Suspense>
+    )
+  }
 
   if (view.name === 'experience') {
     const mantra = mantras[view.mantraId]

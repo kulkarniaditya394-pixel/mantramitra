@@ -1,6 +1,11 @@
 /**
  * Shiv Tandav Stotra — PROTOTYPE PREVIEW: verses 1 and 2, each broken into its compound parts,
- * to show the same word-by-word engine carries a long stotra. Meanings are DRAFT pending review.
+ * to show the same word-by-word engine carries a long stotra.
+ *
+ * Traditionally attributed to Rāvaṇa; composed in the Pañcacāmara metre (16 syllables per line).
+ * Commonly circulated in 15-17 verses depending on the recension — the recension used must be
+ * fixed with the client's advisor before the full stotra is produced.
+ * STATUS: meanings are DRAFT, pending approval by the client's Sanskrit advisor.
  * Field reference: see gayatri.js.
  */
 const w = (verse, n) => `/audio/shiv-tandav/verse-${verse}/word-${String(n).padStart(2, '0')}.mp3`
@@ -43,6 +48,13 @@ export const shivTandav = {
       totalMeaningHindi:
         'जिनकी घनी जटाओं से बहती गंगा की धारा ने उनके कण्ठ को पवित्र किया है, जिनके गले में विशाल सर्पों की माला लटक रही है, और जिनका डमरू डम-डम की ध्वनि से गूँज रहा है — उन शिव ने प्रचण्ड ताण्डव नृत्य किया। वे शिव हम सबका कल्याण करें।',
       totalMeaningAudio: '/audio/shiv-tandav/verse-1/meaning.mp3',
+      source: {
+        scripture: 'शिव ताण्डव स्तोत्र — श्लोक 1',
+        rishi: 'रावण (परम्परानुसार)',
+        devata: 'शिव',
+        chhanda: 'पञ्चचामर',
+        note: 'प्रारूप अर्थ — विद्वान की समीक्षा शेष।',
+      },
     },
     {
       id: 'shiv-v2',
@@ -74,6 +86,13 @@ export const shivTandav = {
       totalMeaningHindi:
         'जिनकी जटाओं के गहरे घेरे में देवनदी गंगा तेज़ वेग से घूम रही है, जिनके मस्तक पर उसकी चंचल लहरें बेलों की तरह शोभा पा रही हैं, जिनके माथे पर अग्नि धक-धक करके जल रही है, और जिनके मुकुट में बाल-चन्द्रमा सुशोभित है — ऐसे शिव में मेरा प्रेम हर क्षण बना रहे।',
       totalMeaningAudio: '/audio/shiv-tandav/verse-2/meaning.mp3',
+      source: {
+        scripture: 'शिव ताण्डव स्तोत्र — श्लोक 2',
+        rishi: 'रावण (परम्परानुसार)',
+        devata: 'शिव',
+        chhanda: 'पञ्चचामर',
+        note: 'प्रारूप अर्थ — विद्वान की समीक्षा शेष।',
+      },
     },
   ],
 }

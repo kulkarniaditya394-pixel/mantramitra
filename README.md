@@ -70,6 +70,22 @@ To add real recordings: put files in `public/audio/...` with the names in `publi
 To use other formats or hosted URLs: change the path strings in `src/data/*.js`.
 For word highlighting during full-mantra playback, fill in each word's `fullMantraAt` (seconds).
 
+### Recording a real voice
+
+TTS reads a mantra like prose — it cannot chant. For flagship mantras, record a human:
+`npm run dev`, open **/#/studio**, and work down the list with the space bar. Each take is written
+straight to the file the app expects. See [RECORDING.md](RECORDING.md). The studio is dev-only and
+is not part of a production build.
+
 ## Content status
 
-All Hindi meanings are **draft** and need approval by a Sanskrit/Hindi reviewer before release.
+Every verse carries a `source` block — scripture reference, ṛṣi, devatā, metre — and the app shows
+it under the meaning, so it is always clear *which* reading is on screen. This matters because
+traditions differ: Gayatri's `savitṛ` is the solar deity in the Vedic/Sāyaṇa reading, while Ārya
+Samāj and Advaita readings render it as Īśvara/Brahman. Record the chosen tradition per mantra
+rather than treating one rendering as "the" meaning.
+
+Gayatri follows the mainstream Vedic reading (Ṛgveda 3.62.10, devatā Savitṛ), cross-checked against
+Sāyaṇa via Wilson (1866), Griffith (1896) and Monier-Williams.
+
+All Hindi meanings remain **draft** until approved by the client's Sanskrit/Hindi reviewer.

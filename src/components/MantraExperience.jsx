@@ -68,7 +68,7 @@ export default function MantraExperience({ mantra, verseIndex = 0, continueLabel
         {word && (
           <div key={`${word.id}-${step.run}`} className="flex flex-col items-center" aria-live="polite">
             <ActiveWordCard word={word} progress={progress} playing={session.isPlaying} />
-            <MeaningCard meaning={word.hindiMeaning} />
+            <MeaningCard meaning={word.hindiMeaning} grammar={word.grammar} />
           </div>
         )}
 
@@ -89,6 +89,7 @@ export default function MantraExperience({ mantra, verseIndex = 0, continueLabel
           <TotalMeaning
             key={`meaning-${step.run}`}
             meaning={verse.totalMeaningHindi}
+            source={verse.source}
             progress={progress}
             completed={session.completed}
             continueLabel={continueLabel}
